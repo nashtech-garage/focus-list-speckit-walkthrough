@@ -43,6 +43,12 @@ Open the URL printed by Expo in your browser. Add, complete, filter, and delete 
 
 **Checkpoint:** the app runs in the browser and `npm test` passes.
 
+What you should see in the browser (light and dark mode, with a few sample tasks):
+
+| Light mode | Dark mode |
+|---|---|
+| ![Focus List in light mode](docs/screenshots/web-light.png) | ![Focus List in dark mode](docs/screenshots/web-dark.png) |
+
 ## Part 2: Look at the Spec Kit scaffold
 
 This repository has already been initialized using `specify init --here --force --non-interactive --integration copilot --script ps`; `.github/skills/` and `.specify/` contain the real scaffold. Open the repository root in VS Code, enable GitHub Copilot Chat, and use the skills there. Restart or reload VS Code if the skills are not discovered. The project constitution is already populated.
