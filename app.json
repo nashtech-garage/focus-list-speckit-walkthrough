@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Focus List",
+    "slug": "focus-list-workshop",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.anhtnt90dev.focuslist"
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-status-bar",
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "99a460ea-82e4-45a8-abed-1ab4bc282d7a"
+      }
+    }
+  }
+}
