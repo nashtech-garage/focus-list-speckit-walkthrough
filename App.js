@@ -166,15 +166,19 @@ export default function App() {
               <Text style={[styles.emptyTitle, { color: t.text }]}>{tasks.length === 0 ? 'A fresh start.' : 'Nothing here right now.'}</Text>
               <Text style={[styles.emptyText, { color: t.muted }]}>{tasks.length === 0 ? 'Add a task and take it one step at a time.' : 'Try another filter to see your tasks.'}</Text>
             </View>
-          ) : visibleTasks.map((task) => (
-            <SwipeableTaskRow
-              key={task.id}
-              task={task}
-              t={t}
-              onToggle={() => setTasks((current) => toggleTask(current, task.id))}
-              onDelete={() => setTasks((current) => deleteTask(current, task.id))}
-            />
-          ))}
+          ) : (
+            <View style={styles.taskList}>
+              {visibleTasks.map((task) => (
+                <SwipeableTaskRow
+                  key={task.id}
+                  task={task}
+                  t={t}
+                  onToggle={() => setTasks((current) => toggleTask(current, task.id))}
+                  onDelete={() => setTasks((current) => deleteTask(current, task.id))}
+                />
+              ))}
+            </View>
+          )}
 
           <Text style={[styles.footer, { color: t.muted }]}>One thing at a time.</Text>
         </ScrollView>
@@ -207,8 +211,8 @@ function SwipeableTaskRow({ task, t, onToggle, onDelete }) {
     onPanResponderTerminate: () => Animated.spring(translateX, { toValue: 0, useNativeDriver }).start(),
   })).current;
 
-  const completeOpacity = translateX.interpolate({ inputRange: [0, 40], outputRange: [0, 1], extrapolate: 'clamp' });
-  const deleteOpacity = translateX.interpolate({ inputRange: [-40, 0], outputRange: [1, 0], extrapolate: 'clamp' });
+  const completeOpacity = translateX.interpolate({ inputRange: [0, SWIPE_THRESHOLD], outputRange: [0, 1], extrapolate: 'clamp' });
+  const deleteOpacity = translateX.interpolate({ inputRange: [-SWIPE_THRESHOLD, 0], outputRange: [1, 0], extrapolate: 'clamp' });
 
   return (
     <View style={styles.swipeWrap}>
@@ -270,8 +274,9 @@ const styles = StyleSheet.create({
   checkbox: { width: 24, height: 24, borderRadius: 12, borderWidth: 1.5, alignItems: 'center', justifyContent: 'center' },
   taskTitle: { flex: 1, fontSize: 16, fontWeight: '500' },
   taskCompleted: { textDecorationLine: 'line-through' },
-  swipeWrap: { borderRadius: 20, overflow: 'hidden' },
-  swipeLayer: { ...StyleSheet.absoluteFillObject, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 22, gap: 8, borderRadius: 20 },
+  taskList: { gap: 10 },
+  swipeWrap: { position: 'relative', borderRadius: 20, overflow: 'hidden' },
+  swipeLayer: { position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 22, gap: 8, borderRadius: 20 },
   swipeComplete: { justifyContent: 'flex-start' },
   swipeDelete: { justifyContent: 'flex-end' },
   swipeText: { fontSize: 14, fontWeight: '800' },
