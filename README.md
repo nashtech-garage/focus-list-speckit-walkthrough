@@ -37,7 +37,7 @@ npm test
 npm run web
 ```
 
-Open the URL printed by Expo in your browser. Add, complete, filter, and delete a few tasks, then reload the page. On a touch screen you can also swipe a task right to complete it or left to delete it; the checkbox and trash buttons work too. Tasks are stored in the browser on this device only, so they are not shared between browsers or devices. To reset, delete tasks in the app or clear this site's browser storage.
+Open the URL printed by Expo in your browser. Add, complete, filter, and delete a few tasks, then reload the page. On a touch screen you can also swipe a task right to complete it (or mark it active again) or left to delete it. A label appears as you drag; keep dragging until it is fully visible, then release to confirm. The checkbox and trash buttons work too. Tasks are stored in the browser on this device only, so they are not shared between browsers or devices. To reset, delete tasks in the app or clear this site's browser storage.
 
 `npm test` runs `src/tasks.test.js`, which covers the pure list operations in `src/tasks.js`. It should report 2 passing tests.
 
